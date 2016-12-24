@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html data-ng-app="app" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../bower_components/owl.carousel/dist/assets/owl.carousel.css">
+    <link rel="stylesheet" href="../bower_components/owl.carousel/dist/assets/owl.theme.default.css">
+
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/owl.carousel/dist/owl.carousel.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+
+    <script src="../src/angular-owl-carousel-2.js"></script>
+    <script src="demo.js"></script>
+    <style>
+
+    </style>
+</head>
+<body data-ng-controller="TestController">
+
+<ng-owl-carousel class="owl-theme" owl-items="items" owl-properties="properties">
+
+    <div class="item"><h4>Free Item</h4></div>
+    <div class="item" data-ng-repeat="item in items"><h4>{{$index}}</h4></div>
+
+
+</ng-owl-carousel>
+
+
+<script>
+
+    //    $('.owl-carousel').owlCarousel()
+</script>
+</body>
+</html>

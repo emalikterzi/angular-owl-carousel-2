@@ -1,0 +1,26 @@
+{
+  "name": "angular-owl-carousel2",
+  "authors": [
+    "Enes Malik Terzi <e.malikterzi@gmail.com>"
+  ],
+  "description": "Owl Carousel 2 imp for angularjs",
+  "main": "",
+  "keywords": [
+    "angular",
+    "owl",
+    "carousel"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.4.0",
+    "owl.carousel": "owl-carousel2#^2.2.0"
+  }
+}
