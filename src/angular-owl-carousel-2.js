@@ -147,6 +147,10 @@
 
                 }, true);
 
+                $scope.$on('$destroy', function () {
+                    destroyOwl();
+                })
+
                 function init() {
                     initial = false;
                     initOwl();
@@ -174,6 +178,8 @@
                     $element.find(owlCarouselClassName)
                         .owlCarousel('destroy');
                 }
+
+
             }
         })
 })();
