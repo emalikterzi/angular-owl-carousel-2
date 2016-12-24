@@ -2,8 +2,12 @@
 
 Impl for [OwlCarousel2]
 
-  - See HTML in the right
-  - Magic
+
+### Installation
+```ssh
+bower install angular-owl-carousel2
+```
+
 
 ### Usage
 
@@ -13,4 +17,4 @@ Impl for [OwlCarousel2]
     <div class="item" data-ng-repeat="item in items"><h4>{{$index}}</h4></div>
 </ng-owl-carousel>
 ```
-   [OwlCarousel2]: <https://github.com/joemccann/dillinger>
+   [OwlCarousel2]: <https://github.com/OwlCarousel2/OwlCarousel2>
