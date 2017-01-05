@@ -2,12 +2,9 @@
  * Created by emt on 24.12.2016.
  */
 
-(function () {
-    angular.module('angular-owl-carousel-2', []);
-})();
+var angularApp = angular.module('angular-owl-carousel-2', []);
 
-
-(function () {
+(function (app) {
     var owlProperties = [
 
         //OPTIONS
@@ -107,79 +104,74 @@
         'play.owl.video'
     ];
 
-    angular.module('angular-owl-carousel-2')
-        .directive('ngOwlCarousel', function ($timeout) {
-            return {
-                restrict: 'E',
-                link: link,
-                scope: {
-                    owlItems: '=',
-                    owlProperties: '='
-                },
-                transclude: true,
-                template: '<div class="owl-carousel" data-ng-transclude></div>'
-            };
-            function link($scope, $element, $attr) {
+    app.directive('ngOwlCarousel', function ($timeout) {
+        return {
+            restrict: 'E',
+            link: link,
+            scope: {
+                owlItems: '=',
+                owlProperties: '='
+            },
+            transclude: true,
+            template: '<div class="owl-carousel" data-ng-transclude></div>'
+        };
+        function link($scope, $element, $attr) {
 
-                var options = {},
-                    initial = true,
-                    owlCarouselClassName = '.owl-carousel',
-                    owlCarousel = null,
-                    propertyName = $attr.owlItems;
+            var options = {},
+                initial = true,
+                owlCarouselClassName = '.owl-carousel',
+                owlCarousel = null,
+                propertyName = $attr.owlItems;
 
-                if (!propertyName)
-                    throw 'owl-items attribute cannot be null';
+            if (!propertyName)
+                throw 'owl-items attribute cannot be null';
 
 
-                $scope.$watch('[owlItems,owlProperties]', function (arr) {
-                    var items = arr[0];
-                    var props = arr[1];
+            $scope.$watch('[owlItems,owlProperties]', function (arr) {
+                var items = arr[0];
+                var props = arr[1];
 
-                    if ((items && items.length > 0 && !initial)) {
-                        buildProperties(props);
-                        destroyOwl();
-                        initOwl();
-                    }
-                    else if ((items && items.length > 0 && initial)) {
-                        buildProperties(props);
-                        init();
-                    }
-
-                }, true);
-
-                $scope.$on('$destroy', function () {
+                if ((items && items.length > 0 && !initial)) {
+                    buildProperties(props);
                     destroyOwl();
-                })
-
-                function init() {
-                    initial = false;
                     initOwl();
                 }
-
-                function buildProperties(props) {
-                    if (props) {
-                        options = {};
-                        owlProperties.forEach(function (each) {
-                            if (angular.isDefined(props[each])) {
-                                options[each] = props[each];
-                            }
-                        })
-                    }
+                else if ((items && items.length > 0 && initial)) {
+                    buildProperties(props);
+                    init();
                 }
 
-                function initOwl() {
-                    $timeout(function () {
-                        owlCarousel
-                            = $element.find(owlCarouselClassName).owlCarousel(options);
-                    });
-                }
+            }, true);
 
-                function destroyOwl() {
-                    $element.find(owlCarouselClassName)
-                        .owlCarousel('destroy');
-                }
-
-
+            function init() {
+                initial = false;
+                initOwl();
             }
-        })
-})();
+
+            function buildProperties(props) {
+                if (props) {
+                    options = {};
+                    owlProperties.forEach(function (each) {
+                        if (angular.isDefined(props[each])) {
+                            options[each] = props[each];
+                        }
+                    })
+                }
+            }
+
+            function initOwl() {
+                $timeout(function () {
+                    owlCarousel
+                        = $element.find(owlCarouselClassName).owlCarousel(options);
+                });
+            }
+
+            function destroyOwl() {
+                $element.find(owlCarouselClassName)
+                    .owlCarousel('destroy');
+            }
+        }
+    })
+
+})(angularApp);
+
