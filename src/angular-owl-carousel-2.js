@@ -104,7 +104,7 @@ var angularApp = angular.module('angular-owl-carousel-2', []);
         'play.owl.video'
     ];
 
-    app.directive('ngOwlCarousel', function ($timeout) {
+    app.directive('ngOwlCarousel',['$timeout', function ($timeout) {
         return {
             restrict: 'E',
             link: link,
@@ -171,7 +171,7 @@ var angularApp = angular.module('angular-owl-carousel-2', []);
                     .owlCarousel('destroy');
             }
         }
-    })
+    }])
 
 })(angularApp);
 
