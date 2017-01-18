@@ -101,7 +101,25 @@ var angularApp = angular.module('angular-owl-carousel-2', []);
         'play.owl.autoplay',
         'stop.owl.autoplay',
         'stop.owl.video',
-        'play.owl.video'
+        'play.owl.video',
+		
+		//CALLBACKS
+		'onInitialize',
+		'onInitialized',
+		'onResize',
+		'onResized',
+		'onRefresh',
+		'onRefreshed',
+		'onDrag',
+		'onDragged',
+		'onTranslate',
+		'onTranslated',
+		'onChange',
+		'onChanged',
+		'onLoadLazy',
+		'onLoadedLazy',
+		'onStopVideo',
+		'onPlayVideo'
     ];
 
     app.directive('ngOwlCarousel',['$timeout', function ($timeout) {
