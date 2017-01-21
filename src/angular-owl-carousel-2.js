@@ -170,7 +170,6 @@ var angularApp = angular.module('angular-owl-carousel-2', []);
             }
 
             function destroyOwl() {
-                $scope.owlCtrl = {};
                 owlCarousel.owlCarousel('destroy');
             }
 
@@ -180,7 +179,6 @@ var angularApp = angular.module('angular-owl-carousel-2', []);
 
             OwlCtrl.prototype.triggerEvent = function triggerEvent(event) {
                 if (owlEvents.indexOf(event) > -1) {
-                    console.debug('try trigger event: ', event);
                     owlCarousel.trigger(event);
                 }
             };
