@@ -1,0 +1,22 @@
+{
+  "name": "angular-owl-carousel2",
+  "version": "1.0.0",
+  "description": "Owl carousel 2 imp for angularjs",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emalikterzi/angular-owl-carousel-2.git"
+  },
+  "author": "Enes Malik Terzi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emalikterzi/angular-owl-carousel-2/issues"
+  },
+  "homepage": "https://github.com/emalikterzi/angular-owl-carousel-2#readme"
+}

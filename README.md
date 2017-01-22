@@ -4,6 +4,11 @@ Impl for [OwlCarousel2]
 
 
 ### Installation
+
+```ssh
+npm install angular-owl-carousel2
+```
+
 ```ssh
 bower install angular-owl-carousel2
 ```
