@@ -5,6 +5,7 @@
 var angularApp = angular.module('angular-owl-carousel-2', []);
 
 (function (app) {
+
     var owlProperties = [
         //OPTIONS
         'items',
@@ -93,20 +94,6 @@ var angularApp = angular.module('angular-owl-carousel-2', []);
         'onPlayVideo'
     ];
 
-    // ONLY TRIGGERABLE EVENTS
-    var owlEvents = [
-        'refresh.owl.carousel',
-        'next.owl.carousel',
-        'prev.owl.carousel',
-        'to.owl.carousel',
-        'destroy.owl.carousel',
-        'replace.owl.carousel',
-        'add.owl.carousel',
-        'remove.owl.carousel',
-        'play.owl.autoplay',
-        'stop.owl.autoplay'
-    ];
-
     app.directive('ngOwlCarousel', ['$timeout', function ($timeout) {
         return {
             restrict: 'E',
@@ -114,7 +101,7 @@ var angularApp = angular.module('angular-owl-carousel-2', []);
             scope: {
                 owlItems: '=',
                 owlProperties: '=',
-                owlCtrl: '='
+                owlReady: '&'
             },
             transclude: true,
             template: '<div class="owl-carousel" data-ng-transclude></div>'
@@ -128,8 +115,6 @@ var angularApp = angular.module('angular-owl-carousel-2', []);
 
             if (!propertyName)
                 throw 'owl-items attribute cannot be null';
-
-            $scope.owlCtrl = new OwlCtrl();
 
             $scope.$watch('[owlItems,owlProperties]', function (arr) {
                 var items = arr[0];
@@ -166,25 +151,15 @@ var angularApp = angular.module('angular-owl-carousel-2', []);
             function initOwl() {
                 $timeout(function () {
                     owlCarousel = $element.find(owlCarouselClassName).owlCarousel(options);
+                    if (angular.isDefined($scope.owlReady)) {
+                        $scope.owlReady({$api: owlCarousel});
+                    }
                 });
             }
 
             function destroyOwl() {
                 owlCarousel.owlCarousel('destroy');
             }
-
-            function OwlCtrl() {
-                this.isOwlCtrl = true;
-            }
-
-            OwlCtrl.prototype.triggerEvent = function triggerEvent(event) {
-                if (owlEvents.indexOf(event) > -1) {
-                    owlCarousel.trigger(event);
-                }
-            };
-            OwlCtrl.prototype.getOwl = function returnOwl() {
-                return owlCarousel;
-            };
         }
     }]);
 })(angularApp);
