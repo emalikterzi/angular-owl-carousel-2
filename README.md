@@ -16,6 +16,27 @@ bower install angular-owl-carousel2
 
 ### Usage
 
+```js
+$scope.items = [1, 2, 3, 4, 5, 6, 7, 8];
+
+    $scope.properties = {
+        items: 2,
+        onChange: function () {
+            console.dir(arguments);
+        }
+    };
+
+    $scope.ready = function ($api) {
+        owlAPi = $api;
+    };
+
+    $timeout(function () {
+        console.dir(owlAPi);
+        owlAPi.trigger('next.owl.carousel',[2000]);
+    }, 2000)
+
+```
+
 ```html
 <ng-owl-carousel class="owl-theme" owl-items="items" owl-properties="properties">
     <div class="item"><h4>Free Item</h4></div>
