@@ -6,6 +6,23 @@ var angularApp = angular.module('angular-owl-carousel-2', []);
 
 (function (app) {
 
+    function OwlController() {
+        this.owlApi = {};
+    }
+
+    OwlController.prototype.init = function () {
+        this.owlApi = arguments[0];
+    };
+
+    OwlController.prototype.getApi = function () {
+        var self = this;
+        return {
+            trigger: function () {
+                self.owlApi.trigger.apply(self.owlApi, arguments);
+            }
+        }
+    };
+
     var owlProperties = [
         //OPTIONS
         'items',
@@ -103,10 +120,11 @@ var angularApp = angular.module('angular-owl-carousel-2', []);
                 owlProperties: '=',
                 owlReady: '&'
             },
+            controller: OwlController,
             transclude: true,
             template: '<div class="owl-carousel" data-ng-transclude></div>'
         };
-        function link($scope, $element, $attr) {
+        function link($scope, $element, $attr, owlCtrl) {
             var options = {},
                 initial = true,
                 owlCarouselClassName = '.owl-carousel',
@@ -151,8 +169,9 @@ var angularApp = angular.module('angular-owl-carousel-2', []);
             function initOwl() {
                 $timeout(function () {
                     owlCarousel = $element.find(owlCarouselClassName).owlCarousel(options);
+                    owlCtrl.init(owlCarousel);
                     if (angular.isDefined($scope.owlReady)) {
-                        $scope.owlReady({$api: owlCarousel});
+                        $scope.owlReady({$api: owlCtrl.getApi()});
                     }
                 });
             }
