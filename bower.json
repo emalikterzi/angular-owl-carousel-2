@@ -4,7 +4,7 @@
     "Enes Malik Terzi <e.malikterzi@gmail.com>"
   ],
   "description": "Owl Carousel 2 imp for angularjs",
-  "main": "",
+  "main": "src/angular-owl-carousel-2.js",
   "keywords": [
     "angular",
     "owl",
