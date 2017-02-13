@@ -37,6 +37,7 @@ var angularApp = angular.module('angular-owl-carousel-2', []);
         'merge',
         'mergeFit',
         'autoWidth',
+        'autoHeight', //see https://github.com/emalikterzi/angular-owl-carousel-2/issues/4
         'startPosition',
         'URLhashListener',
         'nav',
