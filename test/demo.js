@@ -5,22 +5,24 @@ var app = angular.module('app', ['angular-owl-carousel-2']);
 
 app.controller('TestController', function ($scope, $timeout) {
     var owlAPi;
-    $scope.items = [1, 2, 3, 4, 5, 6, 7, 8];
+    $scope.items = [1, 2, 3, 4, 5, 6, 7, 8, 10];
 
     $scope.properties = {
-        items: 2,
-        onChange: function () {
-            console.dir(arguments);
-        }
+        // autoHeight:true,
+        animateIn: 'fadeIn',
+        lazyLoad: true,
+        items: 5,
+        margin: 10
+
     };
 
     $scope.ready = function ($api) {
         owlAPi = $api;
     };
-
     $timeout(function () {
-        console.dir(owlAPi);
-        owlAPi.trigger('next.owl.carousel',[2000]);
-    }, 2000)
+        $scope.items.push(11);
+
+    },2000)
+
 
 });

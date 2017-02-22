@@ -20,8 +20,8 @@
 
 <ng-owl-carousel class="owl-theme" owl-items="items" owl-properties="properties" owl-ready="ready($api)">
 
-    <div class="item"><h4>Free Item</h4></div>
-    <div class="item" data-ng-repeat="item in items"><h4>{{$index}}</h4></div>
+
+    <img class="owl-lazy" style="padding: 5px;" data-ng-repeat="item in items" data-src="img/text-{{item}}.png">
 
 
 </ng-owl-carousel>
