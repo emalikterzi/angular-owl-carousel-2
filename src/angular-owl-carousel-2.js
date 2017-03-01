@@ -66,8 +66,11 @@ var angularApp = angular.module('angular-owl-carousel-2', []);
         'video',
         'videoHeight',
         'videoWidth',
-        'animateOut',
+        'animateIn',
         'animateInClass',
+        'animateOutClass',
+        'animateOut',
+
         'fallbackEasing',
         'info',
         'nestedItemSelector',
@@ -112,7 +115,7 @@ var angularApp = angular.module('angular-owl-carousel-2', []);
         'onPlayVideo'
     ];
 
-    app.directive('ngOwlCarousel', ['$timeout', function ($timeout) {
+    app.directive('ngOwlCarousel', ['$timeout', '$log', function ($timeout, $log) {
         return {
             restrict: 'E',
             link: link,
@@ -126,45 +129,37 @@ var angularApp = angular.module('angular-owl-carousel-2', []);
             template: '<div class="owl-carousel" data-ng-transclude></div>'
         };
         function link($scope, $element, $attr, owlCtrl) {
-            var options = {},
+            var options = buildProperties($scope.owlProperties),
                 initial = true,
                 owlCarouselClassName = '.owl-carousel',
-                owlCarousel = null,
-                propertyName = $attr.owlItems;
+                owlCarousel = null;
 
-            if (!propertyName)
-                throw 'owl-items attribute cannot be null';
-
-            $scope.$watch('[owlItems,owlProperties]', function (arr) {
-                var items = arr[0];
-                var props = arr[1];
+            $scope.$watchCollection('owlItems', function (items) {
 
                 if ((items && items.length > 0 && !initial)) {
-                    buildProperties(props);
                     destroyOwl();
                     initOwl();
                 }
                 else if ((items && items.length > 0 && initial)) {
-                    buildProperties(props);
-                    init();
+                    initial = false;
+                    initOwl();
                 }
 
             }, true);
 
-            function init() {
-                initial = false;
-                initOwl();
-            }
 
             function buildProperties(props) {
+                var build = {};
                 if (props) {
-                    options = {};
-                    owlProperties.forEach(function (each) {
-                        if (angular.isDefined(props[each])) {
-                            options[each] = props[each];
+                    for (var key in props) {
+                        if (owlProperties.indexOf(key) >= 0) {
+                            build[key] = props[key];
+                        } else {
+                            $log.warn('unknown property : ' + key);
                         }
-                    })
+                    }
                 }
+                return build;
             }
 
             function initOwl() {
