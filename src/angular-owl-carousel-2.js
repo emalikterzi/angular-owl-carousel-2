@@ -134,20 +134,19 @@ var angularApp = angular.module('angular-owl-carousel-2', []);
                 owlCarouselClassName = '.owl-carousel',
                 owlCarousel = null;
 
-            $scope.$watchCollection('owlItems', function (items) {
 
-                if ((items && items.length > 0 && !initial)) {
-                    destroyOwl();
-                    initOwl();
+            $scope.$watch('owlItems', function () {
+                try{
+                    destroyOwl();//always attempt destruction
                 }
-                else if ((items && items.length > 0 && initial)) {
-                    initial = false;
-                    initOwl();
+                catch(e){}
+
+                if($scope.owlItems instanceof Array){
+                    initOwl();//if array, try to instantiate
                 }
 
-            }, true);
-
-
+            }, true);	
+            
             function buildProperties(props) {
                 var build = {};
                 if (props) {
@@ -174,6 +173,7 @@ var angularApp = angular.module('angular-owl-carousel-2', []);
 
             function destroyOwl() {
                 owlCarousel.owlCarousel('destroy');
+                $element.find('.owl-stage').remove();//for some reason its left behind. remove it
             }
         }
     }]);
