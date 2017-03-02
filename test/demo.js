@@ -19,10 +19,5 @@ app.controller('TestController', function ($scope, $timeout) {
     $scope.ready = function ($api) {
         owlAPi = $api;
     };
-    $timeout(function () {
-        $scope.items.push(11);
-
-    },2000)
-
 
 });
