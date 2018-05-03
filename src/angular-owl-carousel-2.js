@@ -135,7 +135,7 @@ var angularApp = angular.module('angular-owl-carousel-2', []);
                 owlCarousel = null;
 
 
-            $scope.$watch('owlItems', function () {
+            $scope.$watchCollection('owlItems', function () {
                 try{
                     destroyOwl();//always attempt destruction
                 }
