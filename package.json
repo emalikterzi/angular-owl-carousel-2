@@ -1,6 +1,6 @@
 {
   "name": "angular-owl-carousel2",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Owl carousel 2 imp for angularjs",
   "main": "src/angular-owl-carousel-2.js",
   "directories": {
@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/emalikterzi/angular-owl-carousel-2/issues"
   },
-  "homepage": "https://github.com/emalikterzi/angular-owl-carousel-2#readme"
+  "homepage": "https://github.com/emalikterzi/angular-owl-carousel-2#readme",
+  "dependencies": {
+    "angular": "^1.7.4",
+    "owl.carousel": "^2.3.4"
+  }
 }
