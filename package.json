@@ -1,6 +1,6 @@
 {
   "name": "angular-owl-carousel2",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Owl carousel 2 imp for angularjs",
   "main": "src/angular-owl-carousel-2.js",
   "directories": {
